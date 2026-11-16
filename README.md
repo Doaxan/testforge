@@ -2,6 +2,18 @@
 
 Комбайн для верификации студенческих/учительских офферов через SheerID: единый движок API-флоу, генераторы документов, очередь задач и веб-дашборд. Интерфейс RU/EN, без китайского.
 
+**Гайд «что куда»:** [GUIDE.md](GUIDE.md) · **Скриншоты:** [docs/screenshots/](docs/screenshots/)
+
+## Дашборд
+
+| Запуск | Документы | Программы |
+|--------|-----------|-----------|
+| ![run](docs/screenshots/01_run.png) | ![docs](docs/screenshots/02_docs.png) | ![programs](docs/screenshots/03_programs.png) |
+
+Transcript Studio — 288 школ, рендер транскрипта в браузере:
+
+![studio](docs/screenshots/06_studio_preview.png)
+
 ## Возможности
 
 - **Движок верификации** — полный флоу SheerID по API: отправка личной информации → пропуск SSO → запрос загрузки → PUT в S3 → completeDocUpload → опрос статуса. TLS-имперсонация (curl_cffi) + NewRelic-заголовки, ротация User-Agent, поддержка прокси.

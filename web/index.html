@@ -201,7 +201,7 @@ async function jget(u){const r=await fetch(u,{headers:H()});return r.json();}
 async function init(){
 const [p,s,d,h]=await Promise.all([jget('/api/programs'),jget('/api/schools'),jget('/api/doc_types'),jget('/health')]);
 const po=$('#v_prog');po.innerHTML=Object.entries(p.programs).map(([k,v])=>`<option value="${k}">${k} — ${v.title}</option>`).join('');
-const so='<option>'+Object.entries(s.schools).map(([k,v])=>`<option value="${k}">${v.name}</option>`).join('');
+const so=Object.entries(s.schools).map(([k,v])=>`<option value="${k}">${v.name}</option>`).join('');
 $('#v_school').innerHTML=so;$('#d_school').innerHTML=so;
 const dt=Object.entries(d.doc_types).filter(([k])=>k!=='transcript_studio').map(([k,v])=>`<option value="${k}">${v.label}</option>`).join('');
 $('#v_doc').innerHTML=dt;$('#d_type').innerHTML=dt;
