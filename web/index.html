@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EduForge — Verification Combine</title>
+<style>
+:root{--bg:#0b0f14;--panel:#111823;--panel2:#0e141d;--line:#1e2a3a;--txt:#d7e2ee;--mut:#7d8fa3;
+--acc:#37e0a1;--acc2:#3aa0ff;--warn:#ffb454;--err:#ff5d6c;--mono:'JetBrains Mono',ui-monospace,Consolas,monospace}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--txt);font:14px/1.5 'Segoe UI',system-ui,sans-serif;display:flex;min-height:100vh}
+a{color:var(--acc2);text-decoration:none}
+aside{width:220px;background:var(--panel2);border-right:1px solid var(--line);padding:18px 12px;position:sticky;top:0;height:100vh;flex-shrink:0}
+.logo{font:700 19px var(--mono);color:var(--acc);letter-spacing:.5px;padding:6px 10px 16px}
+.logo span{color:var(--mut);font-weight:400}
+nav button{display:flex;align-items:center;gap:9px;width:100%;background:none;border:0;color:var(--mut);
+padding:10px 12px;border-radius:8px;cursor:pointer;font-size:13.5px;text-align:left;margin-bottom:2px}
+nav button:hover{background:#16202e;color:var(--txt)}
+nav button.on{background:#152232;color:var(--acc);font-weight:600}
+nav .ic{width:17px;text-align:center}
+.lang{margin-top:18px;display:flex;gap:6px;padding:0 10px}
+.lang button{flex:1;background:#16202e;border:1px solid var(--line);color:var(--mut);border-radius:6px;padding:5px;cursor:pointer;font-size:12px}
+.lang button.on{color:var(--acc);border-color:var(--acc)}
+main{flex:1;padding:26px 30px;max-width:1060px}
+h1{font-size:20px;margin-bottom:4px}
+.sub{color:var(--mut);margin-bottom:20px;font-size:13px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px;margin-bottom:16px}
+.card h2{font-size:14px;color:var(--acc);margin-bottom:12px;font-weight:600}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+label{display:block;font-size:12px;color:var(--mut);margin-bottom:4px}
+input,select,textarea{width:100%;background:var(--panel2);border:1px solid var(--line);color:var(--txt);
+border-radius:8px;padding:9px 11px;font-size:13px;font-family:inherit}
+input:focus,select:focus{outline:none;border-color:var(--acc2)}
+.mono{font-family:var(--mono)}
+.btn{background:var(--acc);color:#04120c;border:0;border-radius:8px;padding:10px 18px;font-weight:700;
+cursor:pointer;font-size:13.5px;margin-top:14px}
+.btn:hover{filter:brightness(1.1)}
+.btn.sec{background:#1b2836;color:var(--txt);font-weight:500}
+.btn:disabled{opacity:.5;cursor:default}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.pill{display:inline-block;padding:2px 9px;border-radius:20px;font-size:11.5px;font-weight:600;font-family:var(--mono)}
+.p-ok{background:#0f2e22;color:var(--acc)}.p-run{background:#12253a;color:var(--acc2)}
+.p-wait{background:#2e2510;color:var(--warn)}.p-err{background:#331419;color:var(--err)}
+.p-mut{background:#1a2431;color:var(--mut)}
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+th{text-align:left;color:var(--mut);font-weight:500;padding:7px 9px;border-bottom:1px solid var(--line)}
+td{padding:8px 9px;border-bottom:1px solid #16202e;vertical-align:top}
+tr:hover td{background:#131c28}
+.hide{display:none}
+.note{font-size:12px;color:var(--mut);margin-top:8px}
+.docprev{max-width:340px;border:1px solid var(--line);border-radius:8px;margin-top:12px;background:#fff}
+.kv{font-family:var(--mono);font-size:12px;color:var(--mut)}
+.stat{display:flex;gap:14px;margin-bottom:18px;flex-wrap:wrap}
+.stat .box{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 18px;min-width:120px}
+.stat .n{font:700 22px var(--mono);color:var(--acc)}
+.stat .l{font-size:11.5px;color:var(--mut)}
+iframe{width:100%;height:78vh;border:1px solid var(--line);border-radius:12px;background:#fff}
+.toast{position:fixed;bottom:22px;right:22px;background:#152232;border:1px solid var(--acc);color:var(--txt);
+padding:12px 18px;border-radius:10px;font-size:13px;opacity:0;transition:.3s;pointer-events:none;max-width:380px}
+.toast.show{opacity:1}
+</style>
+</head>
+<body>
+<aside>
+  <div class="logo">Edu<span>Forge</span></div>
+  <nav id="nav">
+    <button data-t="run" class="on"><span class="ic">▶</span><span data-i="nav_run">Запуск</span></button>
+    <button data-t="queue"><span class="ic">≡</span><span data-i="nav_queue">Очередь</span></button>
+    <button data-t="docs"><span class="ic">▤</span><span data-i="nav_docs">Документы</span></button>
+    <button data-t="studio"><span class="ic">◫</span><span data-i="nav_studio">Transcript Studio</span></button>
+    <button data-t="programs"><span class="ic">◎</span><span data-i="nav_prog">Программы</span></button>
+    <button data-t="settings"><span class="ic">⚙</span><span data-i="nav_set">Настройки</span></button>
+  </nav>
+  <div class="lang"><button id="lru" class="on">RU</button><button id="len">EN</button></div>
+</aside>
+<main>
+  <!-- RUN -->
+  <section id="t-run">
+    <h1 data-i="run_h">Запуск верификации</h1>
+    <div class="sub" data-i="run_sub">Вставь ссылку SheerID с verificationId — движок сам пройдёт шаги и загрузит документ.</div>
+    <div class="card">
+      <h2 data-i="run_target">Цель</h2>
+      <label data-i="run_url">Ссылка верификации или verificationId</label>
+      <input id="v_url" class="mono" placeholder="https://services.sheerid.com/verify/.../?verificationId=...">
+      <div class="grid3" style="margin-top:12px">
+        <div><label data-i="run_prog">Программа</label><select id="v_prog"></select></div>
+        <div><label data-i="run_school">Школа</label><select id="v_school"></select></div>
+        <div><label data-i="run_doc">Документ</label><select id="v_doc"></select></div>
+      </div>
+    </div>
+    <div class="card">
+      <h2 data-i="run_ident">Личность (пусто = сгенерировать)</h2>
+      <div class="grid">
+        <div><label data-i="f_first">Имя</label><input id="v_first"></div>
+        <div><label data-i="f_last">Фамилия</label><input id="v_last"></div>
+        <div><label>Email</label><input id="v_email" class="mono"></div>
+        <div><label data-i="f_dob">Дата рождения</label><input id="v_dob" class="mono" placeholder="2002-05-14"></div>
+      </div>
+      <div class="grid" style="margin-top:12px">
+        <div><label data-i="run_proxy">Прокси (опционально)</label><input id="v_proxy" class="mono" placeholder="http://user:pass@host:port"></div>
+        <div><label>SSO</label><select id="v_sso"><option value="1" data-i="run_skip">Пропускать SSO</option><option value="0" data-i="run_keep">Не пропускать</option></select></div>
+      </div>
+      <button class="btn" id="v_go" data-i="run_go">Запустить</button>
+      <div class="note" id="v_out"></div>
+    </div>
+  </section>
+  <!-- QUEUE -->
+  <section id="t-queue" class="hide">
+    <h1 data-i="q_h">Очередь задач</h1>
+    <div class="sub" data-i="q_sub">Автообновление каждые 4 секунды.</div>
+    <div class="stat" id="q_stat"></div>
+    <div class="card"><table><thead><tr>
+      <th>ID</th><th data-i="q_prog">Программа</th><th>VID</th><th data-i="q_status">Статус</th><th data-i="q_detail">Детали</th><th data-i="q_time">Время</th>
+    </tr></thead><tbody id="q_body"></tbody></table></div>
+  </section>
+  <!-- DOCS -->
+  <section id="t-docs" class="hide">
+    <h1 data-i="d_h">Генератор документов</h1>
+    <div class="sub" data-i="d_sub">Student ID, транскрипт, бейдж учителя, PDF-сертификат, PSU LionPATH.</div>
+    <div class="card">
+      <div class="grid3">
+        <div><label data-i="d_type">Тип</label><select id="d_type"></select></div>
+        <div><label data-i="f_first">Имя</label><input id="d_first"></div>
+        <div><label data-i="f_last">Фамилия</label><input id="d_last"></div>
+      </div>
+      <div class="grid" style="margin-top:12px">
+        <div><label data-i="run_school">Школа</label><select id="d_school"></select></div>
+        <div><label data-i="f_dob">Дата рождения</label><input id="d_dob" class="mono" placeholder="2002-05-14"></div>
+      </div>
+      <div class="row"><button class="btn" id="d_go" data-i="d_go">Сгенерировать</button>
+      <button class="btn sec" id="d_dl" data-i="d_dl" disabled>Скачать</button></div>
+      <div class="note" id="d_out"></div>
+      <img id="d_prev" class="docprev hide">
+    </div>
+  </section>
+  <!-- STUDIO -->
+  <section id="t-studio" class="hide">
+    <h1>Transcript Studio</h1>
+    <div class="sub" data-i="s_sub">288 школ · 8 макетов · 20 стран. Отдельный модуль, рендер в браузере, экспорт PDF.</div>
+    <iframe src="/transcript/" loading="lazy"></iframe>
+  </section>
+  <!-- PROGRAMS -->
+  <section id="t-programs" class="hide">
+    <h1 data-i="p_h">Программы SheerID</h1>
+    <div class="sub" data-i="p_sub">Живые programId проверены запросом к services.sheerid.com.</div>
+    <div class="card"><table><thead><tr><th data-i="p_key">Ключ</th><th>Program ID</th><th data-i="p_title">Название</th><th data-i="p_kind">Тип</th><th data-i="p_note">Примечание</th></tr></thead><tbody id="p_body"></tbody></table></div>
+    <div class="card"><h2 data-i="p_dead">Мёртвые (404)</h2><div id="p_dead" class="kv"></div></div>
+  </section>
+  <!-- SETTINGS -->
+  <section id="t-settings" class="hide">
+    <h1 data-i="set_h">Настройки</h1>
+    <div class="card">
+      <label data-i="set_token">Admin-токен (если задан EDUFORGE_TOKEN на сервере)</label>
+      <input id="set_token" class="mono" type="password">
+      <div class="note" data-i="set_note">Токен хранится только в этом браузере (localStorage) и уходит в заголовке X-Admin-Token.</div>
+      <button class="btn" id="set_save" data-i="set_save">Сохранить</button>
+    </div>
+    <div class="card"><h2 data-i="set_about">О комбайне</h2><div class="kv" id="set_about"></div></div>
+  </section>
+</main>
+<div class="toast" id="toast"></div>
+<script>
+const I={
+ru:{nav_run:'Запуск',nav_queue:'Очередь',nav_docs:'Документы',nav_studio:'Transcript Studio',nav_prog:'Программы',nav_set:'Настройки',
+run_h:'Запуск верификации',run_sub:'Вставь ссылку SheerID с verificationId — движок сам пройдёт шаги и загрузит документ.',
+run_target:'Цель',run_url:'Ссылка верификации или verificationId',run_prog:'Программа',run_school:'Школа',run_doc:'Документ',
+run_ident:'Личность (пусто = сгенерировать)',f_first:'Имя',f_last:'Фамилия',f_dob:'Дата рождения',run_proxy:'Прокси (опционально)',
+run_skip:'Пропускать SSO',run_keep:'Не пропускать',run_go:'Запустить',q_h:'Очередь задач',q_sub:'Автообновление каждые 4 секунды.',
+q_prog:'Программа',q_status:'Статус',q_detail:'Детали',q_time:'Время',d_h:'Генератор документов',
+d_sub:'Student ID, транскрипт, бейдж учителя, PDF-сертификат, PSU LionPATH.',d_type:'Тип',d_go:'Сгенерировать',d_dl:'Скачать',
+s_sub:'288 школ · 8 макетов · 20 стран. Отдельный модуль, рендер в браузере, экспорт PDF.',
+p_h:'Программы SheerID',p_sub:'Живые programId проверены запросом к services.sheerid.com.',p_key:'Ключ',p_title:'Название',p_kind:'Тип',p_note:'Примечание',p_dead:'Мёртвые (404)',
+set_h:'Настройки',set_token:'Admin-токен (если задан EDUFORGE_TOKEN на сервере)',set_note:'Токен хранится только в этом браузере (localStorage) и уходит в заголовке X-Admin-Token.',set_save:'Сохранить',set_about:'О комбайне',
+started:'Задача создана',err:'Ошибка',gen_ok:'Документ готов',saved:'Сохранено'},
+en:{nav_run:'Run',nav_queue:'Queue',nav_docs:'Documents',nav_studio:'Transcript Studio',nav_prog:'Programs',nav_set:'Settings',
+run_h:'Run verification',run_sub:'Paste a SheerID link with verificationId — the engine walks the steps and uploads the document.',
+run_target:'Target',run_url:'Verification URL or verificationId',run_prog:'Program',run_school:'School',run_doc:'Document',
+run_ident:'Identity (blank = auto-generate)',f_first:'First name',f_last:'Last name',f_dob:'Birth date',run_proxy:'Proxy (optional)',
+run_skip:'Skip SSO',run_keep:'Keep SSO',run_go:'Run',q_h:'Task queue',q_sub:'Auto-refresh every 4 seconds.',
+q_prog:'Program',q_status:'Status',q_detail:'Detail',q_time:'Time',d_h:'Document generator',
+d_sub:'Student ID, transcript, teacher badge, PDF certificate, PSU LionPATH.',d_type:'Type',d_go:'Generate',d_dl:'Download',
+s_sub:'288 schools · 8 layouts · 20 countries. Standalone module, browser render, PDF export.',
+p_h:'SheerID programs',p_sub:'Live programIds verified against services.sheerid.com.',p_key:'Key',p_title:'Title',p_kind:'Kind',p_note:'Note',p_dead:'Dead (404)',
+set_h:'Settings',set_token:'Admin token (if EDUFORGE_TOKEN is set on the server)',set_note:'Token stays in this browser (localStorage) and is sent as X-Admin-Token.',set_save:'Save',set_about:'About',
+started:'Task created',err:'Error',gen_ok:'Document ready',saved:'Saved'}};
+let lang=localStorage.ef_lang||'ru';
+const $=s=>document.querySelector(s);
+const tok=()=>localStorage.ef_token||'';
+const H=()=>({'Content-Type':'application/json','X-Admin-Token':tok()});
+function applyLang(){document.querySelectorAll('[data-i]').forEach(e=>{const k=e.dataset.i;if(I[lang][k])e.textContent=I[lang][k];});
+$('#lru').classList.toggle('on',lang==='ru');$('#len').classList.toggle('on',lang==='en');}
+$('#lru').onclick=()=>{lang='ru';localStorage.ef_lang=lang;applyLang();};
+$('#len').onclick=()=>{lang='en';localStorage.ef_lang=lang;applyLang();};
+function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3200);}
+document.querySelectorAll('#nav button').forEach(b=>b.onclick=()=>{
+document.querySelectorAll('#nav button').forEach(x=>x.classList.remove('on'));b.classList.add('on');
+document.querySelectorAll('main section').forEach(s=>s.classList.add('hide'));$('#t-'+b.dataset.t).classList.remove('hide');
+if(b.dataset.t==='queue')loadQueue();if(b.dataset.t==='programs')loadPrograms();});
+async function jget(u){const r=await fetch(u,{headers:H()});return r.json();}
+async function init(){
+const [p,s,d,h]=await Promise.all([jget('/api/programs'),jget('/api/schools'),jget('/api/doc_types'),jget('/health')]);
+const po=$('#v_prog');po.innerHTML=Object.entries(p.programs).map(([k,v])=>`<option value="${k}">${k} — ${v.title}</option>`).join('');
+const so='<option>'+Object.entries(s.schools).map(([k,v])=>`<option value="${k}">${v.name}</option>`).join('');
+$('#v_school').innerHTML=so;$('#d_school').innerHTML=so;
+const dt=Object.entries(d.doc_types).filter(([k])=>k!=='transcript_studio').map(([k,v])=>`<option value="${k}">${v.label}</option>`).join('');
+$('#v_doc').innerHTML=dt;$('#d_type').innerHTML=dt;
+$('#set_about').textContent=`EduForge v${h.programs?'1.0':''} · programs: ${h.programs} · schools: ${h.schools} · engine: curl_cffi + NewRelic headers`;
+$('#set_token').value=tok();applyLang();}
+$('#v_go').onclick=async()=>{
+const body={url:$('#v_url').value.trim(),program:$('#v_prog').value,school_id:$('#v_school').value,doc_type:$('#v_doc').value,
+first:$('#v_first').value||null,last:$('#v_last').value||null,email:$('#v_email').value||null,birth_date:$('#v_dob').value||null,
+proxy:$('#v_proxy').value||null,skip_sso:$('#v_sso').value==='1'};
+$('#v_go').disabled=true;
+try{const r=await fetch('/api/verify',{method:'POST',headers:H(),body:JSON.stringify(body)});const j=await r.json();
+if(!r.ok)throw new Error(j.detail||r.status);
+$('#v_out').innerHTML=`<span class="pill p-ok">${I[lang].started}</span> <span class="mono">${j.task_id}</span> · vid <span class="mono">${j.vid}</span>`;
+toast(I[lang].started+': '+j.task_id);}catch(e){$('#v_out').innerHTML=`<span class="pill p-err">${I[lang].err}</span> ${e.message}`;}
+$('#v_go').disabled=false;};
+const PILL={queued:'p-mut',running:'p-run',generating:'p-run',submitting:'p-run',submitted:'p-ok',verified:'p-ok',failed:'p-err',rejected:'p-err',pending:'p-wait'};
+async function loadQueue(){
+const j=await jget('/api/tasks');const ts=j.tasks||[];
+const cnt={};ts.forEach(t=>cnt[t.status]=(cnt[t.status]||0)+1);
+$('#q_stat').innerHTML=['submitted','running','failed','queued'].map(k=>`<div class="box"><div class="n">${cnt[k]||0}</div><div class="l">${k}</div></div>`).join('');
+$('#q_body').innerHTML=ts.map(t=>{const det=t.result||{};const d=det.stage||det.status||'';const err=det.detail?(typeof det.detail==='string'?det.detail:JSON.stringify(det.detail)).slice(0,80):'';
+return `<tr><td class="mono">${t.id}</td><td>${t.program}</td><td class="mono">${(t.vid||'').slice(0,10)}…</td>
+<td><span class="pill ${PILL[t.status]||'p-mut'}">${t.status}</span></td><td class="kv">${d} ${err}</td>
+<td class="kv">${new Date(t.created*1000).toLocaleTimeString()}</td></tr>`;}).join('')||'<tr><td colspan=6 class="kv">—</td></tr>';}
+setInterval(()=>{if(!$('#t-queue').classList.contains('hide'))loadQueue();},4000);
+let lastDoc=null;
+$('#d_go').onclick=async()=>{
+const body={doc_type:$('#d_type').value,first:$('#d_first').value||null,last:$('#d_last').value||null,school_id:$('#d_school').value,dob:$('#d_dob').value||null};
+$('#d_go').disabled=true;$('#d_out').textContent='…';
+try{const r=await fetch('/api/generate',{method:'POST',headers:H(),body:JSON.stringify(body)});
+if(!r.ok){const j=await r.json();throw new Error(j.detail||r.status);}
+const blob=await r.blob();lastDoc={blob,name:r.headers.get('Content-Disposition')?.match(/filename="(.+)"/)?.[1]||'document.png'};
+$('#d_out').innerHTML=`<span class="pill p-ok">${I[lang].gen_ok}</span> <span class="kv">${r.headers.get('X-Identity')||''} · ${(blob.size/1024).toFixed(1)} KB</span>`;
+$('#d_dl').disabled=false;
+if(blob.type.startsWith('image')){$('#d_prev').src=URL.createObjectURL(blob);$('#d_prev').classList.remove('hide');}else $('#d_prev').classList.add('hide');
+}catch(e){$('#d_out').innerHTML=`<span class="pill p-err">${I[lang].err}</span> ${e.message}`;}
+$('#d_go').disabled=false;};
+$('#d_dl').onclick=()=>{if(!lastDoc)return;const a=document.createElement('a');a.href=URL.createObjectURL(lastDoc.blob);a.download=lastDoc.name;a.click();};
+async function loadPrograms(){const j=await jget('/api/programs');
+$('#p_body').innerHTML=Object.entries(j.programs).map(([k,v])=>`<tr><td class="mono">${k}</td><td class="mono">${v.programId}</td><td>${v.title}</td><td><span class="pill p-ok">${v.kind}</span></td><td class="kv">${v.note||''}</td></tr>`).join('');
+$('#p_dead').innerHTML=Object.entries(j.dead).map(([k,v])=>`${k} — ${v}`).join('<br>');}
+$('#set_save').onclick=()=>{localStorage.ef_token=$('#set_token').value;toast(I[lang].saved);};
+init();
+</script>
+</body>
+</html>

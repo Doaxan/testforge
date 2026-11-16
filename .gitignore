@@ -1,0 +1,14 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+data/*.db
+data/*.db-*
+*.log
+.env
+node_modules/
+.DS_Store
+out/
+samples/
+test_*.png
+test_hdr.txt

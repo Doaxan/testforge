@@ -1,0 +1,13 @@
+services:
+  eduforge:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    ports:
+      - "8895:8895"
+    environment:
+      - EDUFORGE_CONCURRENCY=3
+      # - EDUFORGE_TOKEN=change-me
+    volumes:
+      - ../data:/app/data
+    restart: unless-stopped
