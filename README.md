@@ -1,3 +1,19 @@
+<div align="center">
+
+<img src="assets/alstack-banner.svg" width="900" alt="AlStack — AI-халява, схемы абуза и инструменты">
+
+<br>
+
+<a href="https://t.me/AlStack"><img src="assets/alstack-badge.svg" alt="Telegram: @AlStack"></a>
+
+</div>
+
+<!-- ALSTACK-PROMO -->
+
+> **Из канала [@AlStack](https://t.me/AlStack)** — AI-халява и инструменты каждый день.
+> **Что там:** свежие AI-сервисы с бесплатными кредитами и триалами · схемы абуза (студенческие офферы, SheerID, LLM-шлюзы) · ключи к нейросетям · тулзы для безопасности и автоматизации. Каталоги по 20–30 сервисов с ссылками и пруфами, без воды.
+> 👉 **[t.me/AlStack](https://t.me/AlStack)** — забирай то, что другие продают. Что публикуем: [ALSTACK.md](ALSTACK.md).
+
 # EduForge
 
 Комбайн для верификации студенческих/учительских офферов через SheerID: единый движок API-флоу, генераторы документов, очередь задач и веб-дашборд. Интерфейс RU/EN, без китайского.
@@ -103,3 +119,15 @@ web/
 ## Лицензия
 
 MIT
+
+---
+
+<div align="center">
+
+<a href="https://t.me/AlStack"><img src="assets/alstack-badge.svg" alt="Telegram: @AlStack"></a>
+
+**Ещё больше схем — [@AlStack](https://t.me/AlStack)**
+
+<sub>EduForge — только верхушка. В канале: бесплатные AI-кредиты, обход триалов, ключи к LLM-шлюзам, инструменты для секьюрити и автоматизации. Новые находки каждый день. Подписывайся → [t.me/AlStack](https://t.me/AlStack)</sub>
+
+</div>

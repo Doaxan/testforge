@@ -1,3 +1,4 @@
+# EduForge · from @AlStack (https://t.me/AlStack) — AI freebies, abuse schemes, LLM keys & tools.
 """SQLite task store."""
 import os
 import json

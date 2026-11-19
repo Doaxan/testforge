@@ -12,3 +12,4 @@ out/
 samples/
 test_*.png
 test_hdr.txt
+inject_promo.py

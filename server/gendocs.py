@@ -1,3 +1,4 @@
+# EduForge · from @AlStack (https://t.me/AlStack) — AI freebies, abuse schemes, LLM keys & tools.
 """Document generation dispatch + synthetic identity helpers."""
 import random
 from typing import Tuple, Dict

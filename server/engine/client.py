@@ -1,3 +1,4 @@
+# EduForge · from @AlStack (https://t.me/AlStack) — AI freebies, abuse schemes, LLM keys & tools.
 """SheerID verification engine — API flow with TLS impersonation.
 
 Flow (mirrors the public widget):

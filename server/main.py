@@ -1,3 +1,4 @@
+# EduForge · from @AlStack (https://t.me/AlStack) — AI freebies, abuse schemes, LLM keys & tools.
 """EduForge — verification combine server (FastAPI).
 
 Run:  python -m server.main   (or uvicorn server.main:app --port 8890)

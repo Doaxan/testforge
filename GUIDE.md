@@ -1,3 +1,19 @@
+<div align="center">
+
+<img src="assets/alstack-banner.svg" width="900" alt="AlStack — AI-халява, схемы абуза и инструменты">
+
+<br>
+
+<a href="https://t.me/AlStack"><img src="assets/alstack-badge.svg" alt="Telegram: @AlStack"></a>
+
+</div>
+
+<!-- ALSTACK-PROMO -->
+
+> **Из канала [@AlStack](https://t.me/AlStack)** — AI-халява и инструменты каждый день.
+> **Что там:** свежие AI-сервисы с бесплатными кредитами и триалами · схемы абуза (студенческие офферы, SheerID, LLM-шлюзы) · ключи к нейросетям · тулзы для безопасности и автоматизации. Каталоги по 20–30 сервисов с ссылками и пруфами, без воды.
+> 👉 **[t.me/AlStack](https://t.me/AlStack)** — забирай то, что другие продают. Что публикуем: [ALSTACK.md](ALSTACK.md).
+
 # EduForge — гайд: что куда
 
 Практическая инструкция по дашборду и флоу. Скриншоты — в `docs/screenshots/`.
@@ -104,3 +120,15 @@ server/storage.py       SQLite-очередь
 web/index.html          дашборд RU/EN
 web/transcript/         Transcript Studio (288 школ)
 ```
+
+---
+
+<div align="center">
+
+<a href="https://t.me/AlStack"><img src="assets/alstack-badge.svg" alt="Telegram: @AlStack"></a>
+
+**Ещё больше схем — [@AlStack](https://t.me/AlStack)**
+
+<sub>EduForge — только верхушка. В канале: бесплатные AI-кредиты, обход триалов, ключи к LLM-шлюзам, инструменты для секьюрити и автоматизации. Новые находки каждый день. Подписывайся → [t.me/AlStack](https://t.me/AlStack)</sub>
+
+</div>

@@ -1,3 +1,4 @@
+# EduForge · from @AlStack (https://t.me/AlStack) — AI freebies, abuse schemes, LLM keys & tools.
 """EduForge configuration — programs, schools, API endpoints.
 
 Program IDs below were live-checked against services.sheerid.com (HTTP 200).

@@ -1,3 +1,4 @@
+# EduForge · from @AlStack (https://t.me/AlStack) — AI freebies, abuse schemes, LLM keys & tools.
 """
 Anti-Detection Module for SheerID Verification Tools
 Shared module for better anti-fraud bypass
